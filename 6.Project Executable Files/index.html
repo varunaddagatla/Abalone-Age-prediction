@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Abalone Age Prediction</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+
+</head>
+
+<style>
+  body{
+        background:black;
+        <img class='img' src="{{url_for('static',filename='img.jpg')}}" alt="">
+    color:white;
+
+    }
+    .container{
+    background: yellow;
+    color: black;
+    border-radius:15px;
+    }
+    .container h1{
+    text-align:center;
+    }
+    .btn{
+    margin-bottom:10px;
+    margin-left:38%;
+    }
+    .img{
+    width:50%;
+    height:150px;
+    border-radius:30px;
+    margin-left:22%;
+    }
+    .card{
+    background: black;
+    color: white;
+    margin-left:35%;
+    margin-bottom:10px;
+    }
+</style>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Abalone Age</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!--==========================================================-->
+
+<div class="container my-3 mt-3">
+    <h1 class="text-success">Abalone Age Prediction Model</h1>
+    <img class='img' src="{{url_for('static',filename='img.jpg')}}" alt="">
+
+
+    <form action="/predict" method="POST">
+         <div class="row">
+                <div class="form-group col-md-4">
+                    Sex: <input type="text" name="sex" required><br><br>
+                </div>
+                <div class="form-group col-md-4">
+                    Length: <input type="text" name="length" required><br><br>
+                </div>
+                <div class="form-group col-md-4">
+                    Diameter: <input type="text" name="diameter" required><br><br>
+                </div>
+         </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                Height: <input type="text" name="height" required><br><br>
+            </div>
+            <div class="form-group col-md-4">
+                Whole Weight: <input type="text" name="whole weight" required><br><br>
+            </div>
+            <div class="form-group col-md-4">
+                Shucked weight: <input type="text" name="shucked weight" required><br><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                Viscera weight: <input type="text" name="viscera weight" required><br><br>
+            </div>
+            <div class="form-group col-md-4">
+                Shell weight: <input type="text" name="shell weight" required><br><br>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">Get Abalone Age</button>
+    </form>
+
+
+</div>
+ {% if prediction_text %}
+    <div class="card" style="width: 18rem;">
+          <img src="{{url_for('static', filename='img1.jpg')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Abalone Age: {{age}}</h5>
+            <p class="card-text">On the basis of your input we recommend you the best possible age of the Abalone</p>
+              <h2>{{ prediction_text }}</h2>
+          </div>
+            </div>
+    {% endif %}
+</body>
+</html>
